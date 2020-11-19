@@ -20,8 +20,7 @@ dataframe_all = pd.read_csv('Downloads/1410001701_databaseLoadingData.csv')
 num_row = dataframe_all.shape[0]
 dataframe_all.head()
 
-#cleaning data
-#counting the number of missing elements in each column
+#cleaning data, counting the number of missing elements in each column
 
 counter_nan = dataframe_all.isnull().sum()
 counter_without_nan = counter_nan[counter_nan==0]
@@ -30,8 +29,6 @@ counter_without_nan = counter_nan[counter_nan==0]
 
 dataframe_all = dataframe_all[counter_without_nan.keys()]
 
-
-#might have to remove columns, come back to this
 
 x = dataframe_all[:,:-1].values
 standard_scaler = StandardScaler()
@@ -45,7 +42,7 @@ class_labels = np.unique(y)
 label_encoder = LabelEncoder()
 y = label_encoder.fit_transform(y)
 
-# step 5: split the data into training set and test set
+# splitting the data into training set and test set
 test_percentage = 0.1
 x_train, x_test, y_train, y_test = train_test_split(x_std, y, test_size = test_percentage, random_state = 0)
 
